@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: ${postgres-user}
+    password: ${postgres-pwd}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+twilio:
+  account-sid: ${twilio-acc-sid}
+  auth-token: ${twilio-auth-token}
+  phone-number: ${twilio-phone}
+
+server:
+  port: 8080
+
+
