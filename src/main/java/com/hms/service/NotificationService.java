@@ -9,13 +9,17 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class NotificationService {
-    private final TwilioConfig twilioConfig;
-
+//    private final TwilioConfig twilioConfig;
+//
+//    public void sendSms(String to, String message) {
+//        Message.creator(
+//                new PhoneNumber(to),
+//                new PhoneNumber(twilioConfig.getPhoneNumber()),
+//                message
+//        ).create();
+//    }
     public void sendSms(String to, String message) {
-        Message.creator(
-                new PhoneNumber(to),
-                new PhoneNumber(twilioConfig.getPhoneNumber()),
-                message
-        ).create();
+        // Placeholder implementation
+        System.out.println("Sending SMS" + ": " + message);
     }
 }
