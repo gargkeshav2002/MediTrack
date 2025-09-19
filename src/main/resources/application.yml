@@ -17,6 +17,7 @@ twilio:
   account-sid: ${twilio-acc-sid}
   auth-token: ${twilio-auth-token}
   phone-number: ${twilio-phone}
+  enabled: false
 
 server:
   port: 8080
