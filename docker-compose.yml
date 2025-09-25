@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:14
+    container_name: hms-postgres
+    environment:
+      POSTGRES_USER: keshavgarg
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_hms_data:/var/lib/postgresql/data
+
+  app:
+#    build: .
+    image: keshavgarg1/hms-app:latest
+    container_name: hms-app
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      POSTGRES_USER: keshavgarg
+      POSTGRES_PASSWORD: mysecretpassword
+    ports:
+      - "8080:8080"
+
+volumes:
+  postgres_hms_data:
