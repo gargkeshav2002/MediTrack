@@ -1,40 +1,90 @@
 # 🏥 MediTrack - Hospital Management System
 
-MediTrack is a **Spring Boot-based Hospital Management System** designed for scalability, security, and efficiency.  
-It enables patients and doctors to manage appointments seamlessly while ensuring secure authentication, real-time notifications, and smooth workflows.  
+**Modern healthcare management made simple.**
+MediTrack is a **Spring Boot + PostgreSQL** powered backend service designed to streamline hospital operations. It supports patient management, appointments, doctor scheduling, authentication, role-based access, and integrations like Twilio for notifications.
+
+This project demonstrates **production-grade engineering** practices: containerization with Docker, CI/CD with GitHub Actions, environment-specific profiles, and scalable architecture.
 
 ---
 
-## 🚀 Features
+## 🚀 Features  
 
-- 🔐 **Authentication & Authorization**  
-  - JWT-based login with role-based access control (Admin, Doctor, Patient).  
-
-- 📅 **Appointment Management**  
-  - Book, cancel, and view patient–doctor appointments.  
-  - Paginated and sorted listings for better performance.  
-
-- ⚡ **Concurrency**  
-  - Handles multiple user requests efficiently with multithreading.  
-
-- 📩 **Messaging & Notifications**  
-  - **Twilio SMS integration** for real-world appointment notifications.  
-  - Event-driven design for asynchronous tasks.  
-
-- 🛠️ **Developer-Friendly APIs**  
-  - Fully documented with **Swagger / OpenAPI**.  
+- **Patient & Doctor Management** → CRUD APIs with validations.  
+- **Appointments** → Book, update, cancel, and track appointments.  
+- **Authentication & Authorization** → JWT-based security with role-based access.  
+- **Twilio Integration** → (configurable) SMS notifications.  
+- **PostgreSQL Database** → Structured relational storage.  
+- **API Documentation** → Swagger/OpenAPI integration.  
+- **Containerized Deployment** → Docker & Docker Compose ready.  
+- **CI/CD Pipeline** → Auto-build & push Docker images to Docker Hub.  
 
 ---
 
-## 🏗️ Tech Stack
+## 🏗️ Tech Stack  
 
-- **Backend**: Java 17, Spring Boot  
-- **Security**: Spring Security, JWT  
-- **Database**: **PostgreSQL** with JPA/Hibernate  
-- **Messaging & Concurrency**: Twilio API for SMS, asynchronous event handling  
-- **Testing**: JUnit 5, Mockito, MockMvc
-- **External Service**: Twilio SMS (trial)
-- **Containerization**: Docker  
+- **Backend:** Java 17, Spring Boot 3.x  
+- **Database:** PostgreSQL 14  
+- **ORM:** Spring Data JPA + Hibernate  
+- **Security:** Spring Security + JWT  
+- **Containerization:** Docker, Docker Compose  
+- **CI/CD:** GitHub Actions → Docker Hub  
+- **Other:** Lombok, Validation API, Swagger 
+
+---
+
+## ⚡ Quick Start  
+
+### Clone the repository  
+```bash
+git clone https://github.com/gargkeshav2002/MediTrack.git
+cd MediTrack
+```
+
+### Run with Docker (Recommended)
+The project is pre-configured with a Docker profile.
+```bash
+docker-compose up --build
+```
+
+This will spin up:<br>
+  hms-postgres → PostgreSQL database<br>
+  hms-app → Spring Boot application
+
+Swagger UI will be available at:
+```bash
+http://localhost:8080/swagger-ui.html
+```
+
+**Note**: Twilio is disabled by default. To enable, set environment variables TWILIO_ACC_SID, TWILIO_AUTH_TOKEN, TWILIO_PHONE and change twilio.enabled=true in application-docker.yml.
+
+### Run locally without Docker
+The project is pre-configured with a Docker profile.
+```bash
+mvn clean spring-boot:run
+```
+---
+
+## 🔑 Authentication
+
+- JWT-based authentication
+- Roles supported: `ADMIN`, `DOCTOR`, `PATIENT`
+- Use `/auth/login` endpoint to generate token
+
+---
+
+## 🐳 CI/CD with GitHub Actions
+
+Every push to `master` triggers:
+
+1. Build JAR (skip tests)
+2. Build Docker image
+3. Push latest image to Docker Hub
+
+Pull the image anywhere using:
+
+```bash
+docker pull keshavgarg1/hms-app:latest
+```
 
 ---
 
