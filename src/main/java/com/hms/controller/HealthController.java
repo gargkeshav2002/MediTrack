@@ -8,6 +8,6 @@ public class HealthController {
 
     @GetMapping("/api/health")
     public String healthCheck() {
-        return "Hospital Management System is up and running!";
+        return "Hospital Management System is up!";
     }
 }
